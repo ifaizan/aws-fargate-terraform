@@ -70,6 +70,16 @@ resource "aws_route_table" "custom_rt_public" {
   }
 }
 
+resource "aws_route_table_association" "public_association-1" {
+  subnet_id = aws_subnet.main_public_1.id
+  route_table_id = aws_route_table.custom_rt_public.id  
+}
+
+resource "aws_route_table_association" "public_association-2" {
+  subnet_id = aws_subnet.main_public_2.id
+  route_table_id = aws_route_table.custom_rt_public.id  
+}
+
 resource "aws_eip" "ngw-eip" {
   vpc = true
 
@@ -99,4 +109,14 @@ resource "aws_route_table" "custom_rt_private" {
   tags = {
     Name = "custom-rt-private-terraform"
   }
+}
+
+resource "aws_route_table_association" "private_association-1" {
+  subnet_id = aws_subnet.main_private_1.id
+  route_table_id = aws_route_table.custom_rt_private.id  
+}
+
+resource "aws_route_table_association" "private_association-2" {
+  subnet_id = aws_subnet.main_private_2.id
+  route_table_id = aws_route_table.custom_rt_private.id
 }
