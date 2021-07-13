@@ -1,7 +1,3 @@
-data "aws_iam_policy" "AmazonECSTaskExecutionRolePolicy" {
-  name = "AmazonECSTaskExecutionRolePolicy"
-}
-
 resource "aws_iam_role" "task_execution_role" {
   name               = "task_execution_role"
   assume_role_policy = file("./ecstaskexecutionrole.json")
